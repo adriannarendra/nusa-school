@@ -1,7 +1,7 @@
 import "./globals.css";
 import { AppProvider } from "@/context/AppContext";
-import Sidebar from "@/components/layout/Sidebar";
 import Navbar from "@/components/layout/Navbar";
+import Sidebar from "@/components/layout/sidebar/Sidebar";
 
 export default function RootLayout({
   children,
@@ -13,9 +13,9 @@ export default function RootLayout({
       <body className="flex min-h-screen bg-gray-50">
         <AppProvider>
           <Sidebar />
-          <div className="flex-1 flex flex-col">
+          <div className="ml-[320px] flex-1 flex flex-col p-[32px] gap-[20px] overflow-y-auto">
             <Navbar />
-            <main className="flex-1 p-6">{children}</main>
+            {children}
           </div>
         </AppProvider>
       </body>

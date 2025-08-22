@@ -3,35 +3,122 @@
 :root {
   --background: #f9fafb; /* abu-abu muda untuk background */
   --foreground: #171717; /* teks gelap */
-  --primary: #2563eb;    /* biru utama */
-  --secondary: #1e293b;  /* abu-abu gelap */
+  /* --- PRIMARY --- */
+  --primary: #0072C3;    /* biru utama */
+  /* --- SECONDARY --- */
+  --secondary: #FB931B; /* oren terang */
+  --secondary00: #FFE3C4;
+  /* --- NEUTRAL --- */
+  --white: #FFFFFF;  /* putih */
+  --gray00: #FAFAFA;  
+  --gray01: #F2F2F2; 
+  --gray02: #E6E6E6; 
+  --gray03: #D9D9D9; 
+  --gray04: #999999; 
+  --gray05: #FFFFFF; 
+  --gray06: #666666; 
+  --black: #292D32; /* oren terang */
+  /* --- RED --- */
+  --red00: #FFF0F0; 
+  --red05: #F20D0D; 
+  /* --- YELLOW --- */
+  --yellow00: #FFF9F0; 
+  --yellow: #F2AA0D; 
+  /* --- GREEN --- */
+  --green00: #E9FFEB; 
+  --green05: #32A03B; 
+  /* --- BLUE --- */
+  --blue00: #FFFFFF;
+  --blue01: #E9F6FF;  /* biru redup */
+  --blue02: #C2E2F2;
+  --blue03: #89CBF9;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src:  url('/fonts/Poppins-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src:  url('/fonts/Poppins-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src:  url('/fonts/Poppins-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 /* 🌙 Mode gelap */
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
-    --primary: #3b82f6; /* biru lebih terang di dark mode */
+    --primary: #3b82f6;
     --secondary: #111827;
   }
-}
+} */
 
 /* 🎨 Mapping ke Tailwind Theme */
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  --color-secondary: var(--secondary);
-  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), monospace;
+@theme {
+  /* --- PRIMARY --- */
+  --color-primary: var(--primary);    /* biru utama */
+
+  /* --- SECONDARY --- */
+  --color-secondary: var(--secondary); /* oren terang */
+  --color-secondary00: var(--secondary00);
+
+  /* --- NEUTRAL --- */
+  --color-white: var(--white);  /* putih */
+  --color-gray00: var(--gray00);  
+  --color-gray01: var(--gray01);  
+  --color-gray02: var(--gray02);  
+  --color-gray03: var(--gray03);  
+  --color-gray04: var(--gray04);  
+  --color-gray05: var(--gray05);  
+  --color-gray06: var(--gray06);  
+  --color-black: var(--black); /* oren terang */
+
+  /* --- RED --- */
+  --color-red00: var(--red00); 
+  --color-red05: var(--red05); 
+
+  /* --- YELLOW --- */
+  --color-yellow00: var(--yellow00); 
+  --color-yellow: var(--yellow); 
+
+  /* --- GREEN --- */
+  --color-green00: var(--green00); 
+  --color-green05: var(--green05); 
+
+  /* --- BLUE --- */
+  --color-blue00: var(--blue00);
+  --color-blue01: var(--blue01);  /* biru redup */
+  --color-blue02: var(--blue02);
+  --color-blue03: var(--blue03);
+
+  /* --- FONTS --- */
+  --font-poppins: Poppins, system-ui, sans-serif;
+}
+
+*{
+  box-sizing: border-box;
 }
 
 /* 📄 Global body style */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
+  background: var(--color-gray00);
+  color: var(--color-black);
+  font-family: var(--font-poppins);
 }
 
 /* 🔹 Tambahan custom scroll */
@@ -41,4 +128,30 @@ body {
 ::-webkit-scrollbar-thumb {
   background-color: var(--primary);
   border-radius: 4px;
+}
+
+/* Card Base */
+.card-base {
+  @apply rounded-2xl p-4 shadow-sm bg-white;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari */
+}
+
+.chevron {
+  transition: transform 0.5s ease;
+}
+
+.smooth-transition {
+  transition: .3s
+}
+
+.rotate {
+  transform: rotate(-180deg);
 }
