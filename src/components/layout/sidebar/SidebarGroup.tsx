@@ -1,48 +1,54 @@
 import Icon from '@/components/ui/users/icons'
 import { cn } from '@/utils/cn'
 import React, { useState } from 'react'
+import { MenuConfig, MenuPath } from './menuConfig'
 import { usePathname } from 'next/navigation'
 import SidebarItem from './SidebarItem'
-import {
-    ChevronDown
-} from "lucide-react";
 
+interface SidebarProps {
+    menu: MenuConfig
+}
 
-const SidebarGroup = ({ name, icon, path, children }) => {
-    const [isOpen, setIsOpen] = useState('close');
+type dropdownType = 'open' | 'close';
+
+const SidebarGroup = ({ menu }: SidebarProps) => {
+    const [isOpen, setIsOpen] = useState<dropdownType>('close');
+
+    // const dropdownToggle = () => {
+    //     setDropdown([item.path] === 'arrowUp' ? true : false)
+    // }
 
     return (
         <div className='flex flex-col gap-[8px] cursor-pointer'>
-            {/* Parent with submenu */}
             <div
                 onClick={() =>
-                    name === 'Home' ? {} : setIsOpen((prev) => prev === 'close' ? 'open' : 'close')
+                    setIsOpen((prev) => prev === 'close' ? 'open' : 'close')
                 }
                 className="text-primary mx-[20px] flex gap-[12px] p-[12px] text-[16px] font-semibold rounded-[8px]"
             >
                 <div>
-                    {icon}
+                    <Icon {...menu.icon} />
                 </div>
-                {name}
-                {name === 'Home'
+                {menu.name}
+                {menu.name === 'Collapse'
                     ? null
                     :
-                    <ChevronDown
+                    <Icon
+                        name='arrowDown'
                         className={cn(
                             "w-[24px] ml-auto stroke-primary chevron",
                             isOpen === 'open' && "rotate"
                         )}
                     />}
             </div>
-            {path !== '/' &&
+            {menu.path !== '/' &&
                 <div className={
                     cn(
                         "flex mx-[20px] gap-[8px]",
                         isOpen === 'open' ? 'block' : 'hidden'
                     )
                 }>
-                    {/* Submenu */}
-                    {children?.map((item) => (
+                    {menu.children?.map((item) => (
                         <SidebarItem
                             key={item.path}
                             name={item.name}
